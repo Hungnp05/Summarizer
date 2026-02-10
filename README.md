@@ -79,6 +79,7 @@ uvicorn app.main:app --reload
 - **Cải thiện tiềm năng**:
 - Train full dataset (~287k mẫu) + GPU → hiệu suất tăng đáng kể.
 - Tăng layers/d_model, thêm beam search trong generate → summary tốt hơn.
+- xem file trainlog.txt để tham khảo hiệu suất.
 
 Dự án giúp hiểu rõ sự khác biệt giữa mô hình pre-trained mạnh mẽ và mô hình tự xây dựng – dù tự train vẫn còn hạn chế về chất lượng nhưng mang lại giá trị học thuật cao.
 
