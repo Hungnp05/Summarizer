@@ -53,25 +53,33 @@ class Seq2SeqTransformer(nn.Module):
         )
         return self.fc_out(output)
 
-    # Phương thức generate đơn giản (greedy decode)
-    def generate(self, input_ids, max_length=150, num_beams=1):
-        # Để đơn giản, dùng greedy decode (có thể nâng cấp sau)
+    # Phương thức generate
+    def generate(self, input_ids, max_length=150):
         batch_size = input_ids.size(0)
         tgt = torch.full((batch_size, 1), tokenizer.pad_token_id, dtype=torch.long, device=DEVICE)
+        generated = tgt.clone()
+
         for _ in range(max_length):
-            logits = self(input_ids, tgt)
-            next_token = logits[:, -1, :].argmax(dim=-1, keepdim=True)
-            tgt = torch.cat([tgt, next_token], dim=1)
+            logits = self(input_ids, generated)
+            next_token_logits = logits[:, -1, :]
+            next_token = next_token_logits.argmax(dim=-1, keepdim=True)
+            generated = torch.cat([generated, next_token], dim=1)
+
+            # Dừng nếu sinh <eos> ở tất cả batch
             if (next_token == tokenizer.eos_token_id).all():
                 break
-        return tgt
+
+        return generated
 
 self_built_model = Seq2SeqTransformer()
 self_built_model.to(DEVICE)
 self_built_model.eval()
 
 # Load nếu đã train
-self_built_model.load_state_dict(torch.load("summarizer_self_built.pt", map_location=DEVICE))
+# self_built_model.load_state_dict(torch.load("summarizer_self_built.pt", map_location=DEVICE))
+self_built_model.load_state_dict(
+    torch.load(r"E:\code\summarizer_fastapi_app\summarizer_self_built.pt", map_location=DEVICE)
+)
 
 def summarize_self_built(text):
     inputs = tokenizer("summarize: " + text, return_tensors="pt", max_length=512, truncation=True)
