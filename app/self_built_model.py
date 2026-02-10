@@ -58,15 +58,22 @@ class Seq2SeqTransformer(nn.Module):
         batch_size = input_ids.size(0)
         tgt = torch.full((batch_size, 1), tokenizer.pad_token_id, dtype=torch.long, device=DEVICE)
         generated = tgt.clone()
+        previous_tokens = set()
 
-        for _ in range(max_length):
+        for step in range(max_length):
             logits = self(input_ids, generated)
             next_token_logits = logits[:, -1, :]
+
+            # Repetition penalty đơn giản: giảm xác suất token vừa sinh
+            if step > 0:
+                for token in previous_tokens:
+                    next_token_logits[0, token] *= 0.8 
+
             next_token = next_token_logits.argmax(dim=-1, keepdim=True)
             generated = torch.cat([generated, next_token], dim=1)
+            previous_tokens.add(next_token.item())
 
-            # Dừng nếu sinh <eos> ở tất cả batch
-            if (next_token == tokenizer.eos_token_id).all():
+            if next_token.item() == tokenizer.eos_token_id:
                 break
 
         return generated
@@ -102,3 +109,4 @@ def summarize_self_built(text):
         "score": f"{length_ratio:.2f}% (tỷ lệ độ dài summary so với input)",
         "vector": vector
     }
+    
