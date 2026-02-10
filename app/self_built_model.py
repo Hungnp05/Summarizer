@@ -3,11 +3,10 @@ import torch.nn as nn
 import math
 import numpy as np
 
-# Tắt cảnh báo nếu muốn (tùy chọn)
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
-DEVICE = torch.device("cpu")  # Bạn dùng CPU, sau này đổi sang cuda nếu cần
+DEVICE = torch.device("cpu")
 
 # Tokenizer T5 (thêm legacy=False để tắt cảnh báo legacy behaviour)
 from transformers import T5Tokenizer
@@ -72,7 +71,7 @@ self_built_model.to(DEVICE)
 self_built_model.eval()
 
 # Load nếu đã train
-# self_built_model.load_state_dict(torch.load("summarizer_self_built.pt", map_location=DEVICE))
+self_built_model.load_state_dict(torch.load("summarizer_self_built.pt", map_location=DEVICE))
 
 def summarize_self_built(text):
     inputs = tokenizer("summarize: " + text, return_tensors="pt", max_length=512, truncation=True)

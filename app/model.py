@@ -11,7 +11,7 @@ def summarize(text):
     # Để đơn giản, dùng sentence-transformers cho vector đại diện
     from sentence_transformers import SentenceTransformer
     embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    vector = embedder.encode(summary).tolist()[:10]  # 10 phần tử đầu
+    vector = embedder.encode(summary).tolist()[:10]
     
     # "Score": Độ dài summary so với input (tỷ lệ %)
     length_ratio = (len(summary.split()) / len(text.split())) * 100 if text else 0
