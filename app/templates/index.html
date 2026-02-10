@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pre-trained Summarizer</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        textarea { width: 400px; height: 100px; padding: 10px; }
+        button { padding: 10px 20px; }
+        .result { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Pre-trained Summarizer (BART)</h1>
+    <p><a href="/self-built"><button>Chuyển sang Self-built</button></a></p>
+    <form action="/summarize" method="post">
+        <label for="text">Nhập văn bản dài:</label><br>
+        <textarea id="text" name="text" required></textarea><br><br>
+        <button type="submit">Tóm tắt</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Kết quả tóm tắt:</h2>
+        <p><strong>Summary:</strong> {{ result.summary }}</p>
+        <p><strong>Score:</strong> {{ result.score }}</p>
+        <p><strong>Vector embedding (10 đầu):</strong> {{ result.vector }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>

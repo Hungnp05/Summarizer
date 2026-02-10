@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self-built Summarizer</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        textarea { width: 400px; height: 100px; padding: 10px; }
+        button { padding: 10px 20px; }
+        .result { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Self-built Summarizer (Tự Train)</h1>
+    <p><a href="/"><button>Quay về Pre-trained</button></a></p>
+    <form action="/self-built-summarize" method="post">
+        <label for="text">Nhập văn bản dài:</label><br>
+        <textarea id="text" name="text" required></textarea><br><br>
+        <button type="submit">Tóm tắt (Self-built)</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Kết quả tóm tắt:</h2>
+        <p><strong>Summary:</strong> {{ result.summary }}</p>
+        <p><strong>Score:</strong> {{ result.score }}</p>
+        <p><strong>Vector embedding (10 đầu):</strong> {{ result.vector }}</p>
+    </div>
+    {% endif %}
+
+    <p style="color: gray;">Lưu ý: Model này hiện random nếu chưa train. Train trên CNN/DailyMail để tốt hơn.</p>
+</body>
+</html>
