@@ -48,7 +48,7 @@ python train_self_built.py
 - Sau khi hoàn thành, lưu file model: `summarizer_self_built.pt` (trong thư mục gốc).
 4. Thời gian train ước tính (trên CPU i7-13650HX):
 - 3000 mẫu, 3 epochs: ~20–30 phút.
-- Nếu dùng GPU RTX 4050 (sau khi cài torch+CUDA): nhanh gấp 5–10 lần.
+- Nếu dùng GPU (sau khi cài torch+CUDA): nhanh gấp 5–10 lần.
 
 ## Cách chạy dự án
 
