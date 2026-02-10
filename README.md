@@ -16,7 +16,7 @@ Dự án xây dựng một ứng dụng web sử dụng **FastAPI** để tóm t
   - Backend: FastAPI + Jinja2 templates
   - Mô hình pre-trained: facebook/bart-large-cnn
   - Mô hình tự build: Transformer Encoder-Decoder (d_model=256, 2 layers encoder/decoder)
-  - Dataset train: CNN/DailyMail (subset để train nhanh trên CPU)
+  - Dataset train: CNN/DailyMail (subset để train nhanh trên CPU) link: https://huggingface.co/datasets/abisee/cnn_dailymail
 - **Tính năng**: Giao diện web đơn giản với form nhập văn bản dài, hiển thị summary, score và vector embedding.
 
 ## Cách cài đặt và chuẩn bị môi trường
