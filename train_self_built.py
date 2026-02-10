@@ -12,7 +12,7 @@ import numpy as np
 from app.self_built_model import Seq2SeqTransformer, tokenizer, DEVICE
 
 # Config
-BATCH_SIZE = 8   # Giảm xuống vì summarization nặng trên CPU
+BATCH_SIZE = 8
 EPOCHS = 3
 LEARNING_RATE = 1e-4
 MAX_SRC_LEN = 512
@@ -20,7 +20,7 @@ MAX_TGT_LEN = 128
 
 # Dataset CNN/DailyMail (subset nhỏ để test nhanh)
 dataset = load_dataset("cnn_dailymail", "3.0.0")
-train_data = dataset['train'].select(range(3000))  # Giảm xuống 3000 để nhanh
+train_data = dataset['train'].select(range(3000))
 
 class SummDataset(Dataset):
     def __init__(self, data):
