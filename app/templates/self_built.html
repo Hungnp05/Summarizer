@@ -31,3 +31,16 @@
     <p style="color: gray;">Lưu ý: Model này hiện random nếu chưa train. Train trên CNN/DailyMail để tốt hơn.</p>
 </body>
 </html>
+
+<script>
+    const input = document.getElementById("text");
+
+    window.onload = () => {
+        const savedText = localStorage.getItem("input_text");
+        if (savedText) input.value = savedText;
+    };
+
+    input.addEventListener("input", () => {
+        localStorage.setItem("input_text", input.value);
+    });
+</script>
