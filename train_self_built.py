@@ -1,5 +1,5 @@
 import warnings
-warnings.filterwarnings("ignore")  # Tắt cảnh báo để terminal sạch
+warnings.filterwarnings("ignore")
 
 import torch
 import torch.nn as nn
@@ -13,7 +13,7 @@ from app.self_built_model import Seq2SeqTransformer, tokenizer, DEVICE
 
 # Config
 BATCH_SIZE = 8
-EPOCHS = 3
+EPOCHS = 5
 LEARNING_RATE = 1e-4
 MAX_SRC_LEN = 512
 MAX_TGT_LEN = 128
