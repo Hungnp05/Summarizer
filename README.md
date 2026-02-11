@@ -85,6 +85,8 @@ Dự án giúp hiểu rõ sự khác biệt giữa mô hình pre-trained mạnh 
 
 Nếu bạn gặp vấn đề khi chạy, hãy kiểm tra terminal và đảm bảo đã cài đầy đủ dependencies.
 
-LƯU Ý: ở file self_built_model.py trước khi train hãy để comment dòng (74): self_built_model.load_state_dict(torch.load("summarizer_self_built.pt", map_location=DEVICE))
+LƯU Ý: ở file self_built_model.py trước khi train hãy để comment dòng (84, 85):
+state_dict = torch.load(r"E:\code\summarizer_fastapi_app\summarizer_self_built.pt", map_location=DEVICE)
+self_built_model.load_state_dict(state_dict)
 
 sau khi chạy file train_self_built.py thì mới mở comment rồi chạy uvicorn app.main:app --reload
