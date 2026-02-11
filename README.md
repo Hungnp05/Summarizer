@@ -70,7 +70,7 @@ uvicorn app.main:app --reload
 - **Model**: Seq2Seq Transformer (d_model=256, 2 encoder/decoder layers).
 - **Hardware**: CPU Intel i7-13650HX (không dùng GPU).
 - **Kết quả điển hình** (3 epochs):
-- Loss giảm dần từ ~3.5–4.0 xuống ~2.0–2.5.
+- Loss giảm dần từ ~7.3 xuống ~6.2.
 - Không có accuracy trực tiếp (vì là generation task), nhưng có thể đánh giá thủ công: summary ngắn gọn, giữ ý chính nhưng còn thiếu chi tiết so với BART.
 - Thời gian: ~20–30 phút cho 3 epochs trên CPU.
 - **So sánh với pre-trained**:
